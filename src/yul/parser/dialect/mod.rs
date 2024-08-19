@@ -38,7 +38,7 @@ pub trait Dialect: for<'de> Deserialize<'de> + Serialize + Eq + PartialEq + Clon
         arguments: &mut Vec<Identifier>,
         location: Location,
         lexer: &mut Lexer,
-    ) -> Option<Error>;
+    ) -> Result<(),Error>;
 }
 
 /// The root dialect without target-dependent features.
@@ -60,7 +60,7 @@ impl Dialect for DefaultDialect {
         _arguments: &mut Vec<Identifier>,
         _location: Location,
         _lexer: &mut Lexer,
-    ) -> Option<Error> {
-        None
+    ) -> Result<(),Error> {
+        Ok(())
     }
 }
